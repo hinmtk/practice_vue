@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue</title>
+<link rel="stylesheet" href="css/styles4.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+  <h4>isを使ったコンポーネントの表示切替</h4>
+
+  <div id="vm1">
+    <button v-on:click="current^=1">toggle</button>
+    <div v-bind:is="component"></div>
+    <comp-c v-bind:lebel="2" v-bind:message="message" ref="child" @child-event="parentEvent" v-bind:name.sync="name"></comp-c>
+    <button @click="onClick">click</button>
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/main5.js"></script>
+
+</body>
+</html>

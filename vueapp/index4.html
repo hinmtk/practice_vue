@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue</title>
+<link rel="stylesheet" href="css/styles4.css">
+</head>
+
+<body>
+
+  <div id="vm1" class="vm">
+    <h4>
+      コンポーネントでv-modelを使う
+      <a href="https://jp.vuejs.org/v2/guide/components.html#%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%A7-v-model-%E3%82%92%E4%BD%BF%E3%81%86">公式</a>
+    </h4>
+    <my-input v-model="text"></my-input>
+    <p>{{text}}</p>
+  </div>
+
+  <div id="vm2" class="vm">
+    <h4>
+      コンポーネントでv-modelを使う<br>(modelオプションを使ったv-modelのカスタマイズ)
+    </h4>
+    <my-checkbox v-model="checked"></my-checkbox>
+  </div>
+
+  <div id="vm3" class="vm">
+    <h4>
+      .syncによる双方向データバインディング
+    </h4>
+    <my-component v-bind:name.sync="name" v-bind:hp.sync="hp">
+    </my-component>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/main4.js"></script>
+</body>
+</html>

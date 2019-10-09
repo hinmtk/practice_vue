@@ -1,0 +1,33 @@
+body{
+  font-size:16px;
+  font-family:Verdana, sans-serif;
+  color:#333;
+}
+[v-cloak] {
+display:none;
+}
+.container{
+  width: 50%;
+}
+.container.l{
+  float: left;
+}
+.container.r{
+  float: right;
+}
+#vm1{
+  border: 3px solid #eee;
+  padding: 30px;
+  margin: 30px;
+  width: 300px;
+}
+#vm3{
+  width: 400px;
+  border: 3px solid #eee;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+h2{
+  margin-top: 30px;
+  font-size: 20px;
+}

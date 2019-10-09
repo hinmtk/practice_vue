@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue</title>
+<link rel="stylesheet" href="css/styles3.css">
+</head>
+
+<body>
+  <div class="container l">
+    <div id="vm1" v-cloak>
+        <p>{{ message }}</p>
+        <comp-child v-for="item in list" v-bind:key="item.id" v-bind="item" v-on:attack="handleAttack">
+        </comp-child>
+        <comp-child val="これは子B"></comp-child>
+        <h2>▼ event bus -----------------</h2>
+        <comp-a></comp-a>
+        <br>★isSwitchOff:{{isSwitchOff}}<br>
+        <comp-b v-bind:message="message" v-bind:isSwitchOff="isSwitchOff=true" @enter="test"></comp-b>
+    </div>
+    <div id="vm2" v-cloak>vm2</div>
+
+    <div id="app1">
+      <component-a v-on:change="changeClass">
+      </component-a>
+      <component-c ref="child"></component-c>
+      <button v-on:click="onClick">click</button>
+    </div>
+    <div id="app2" v-cloak>
+      <component-b></component-b>
+    </div>
+  </div>
+
+  <div class="container r">
+
+    <h3>▼ slot ---------------</h3>
+
+    <!-- slot -->
+    <div id="vm3" v-cloak>
+      <component-d>
+        <template slot="header" slot-scope="props">
+          <h1>Hello Vue.js!</h1>
+          <p>Vue.jsはJavaScriptのフレームワークです。</p>
+          <p style="color:red">{{ props.text }}</p>
+        </template>
+        何も設定してないものが入ります(slotの名前をつけてないもの)
+        <footer slot="footer">フッターだお</footer>
+      </component-d>
+    </div>
+
+    <h3>▼ v-model ---------------</h3>
+
+        <!-- v-model -->
+    <div id="vm4" v-cloak>
+      <input v-model="message" placeholder="edit me">
+      <p>Message is:{{ message }}</p>
+
+      <span>Multiline message is:</span>
+      <p style="white-space:pre-line;">{{ message }}</p>
+      <br>
+      <textarea v-model="message" placeholder="add multiple lines"></textarea><br>
+      <h4>チェックボックス</h4>
+      <input type="checkbox" id="checkbox" v-model="checked">
+      <label for="checkbox">aaa :{{ checked }}</label>
+      <h4>複数のチェックボックス</h4>
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames">
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+      <label for="mike">Mike</label>
+      <br>
+      <span>Checked names:{{ checkedNames }}</span><br>
+      <br>
+      <br>
+      <input id="radio" type="radio" v-model="picked" value="a">
+      <label for="radio">radio</label>{{ picked }}<br>
+      <input type="checkbox" id="toggle" v-model="toggle" true-value="yes" false-value="no">
+      <label for="toggle"></label>{{ toggle }}
+      <br>
+      <select v-model="selected">
+        <option value="abc">ABC</option>
+      </select>
+      <p>{{ selected }}</p>
+
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/main3.js"></script>
+</body>
+</html>

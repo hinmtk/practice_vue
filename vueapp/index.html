@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <div id="app" v-cloak>
+    <!-- データからUIへの反映 -->
+    <p>Hello {{ name.toUpperCase() }}!</p>
+    <!-- uiからdataへ反映 -->
+    <p><input type="text" v-model="name"></p>
+
+  </div>
+
+  <div id="app2" class="container" v-cloak>
+    <h1>
+      <button @click="purge" class="purge">Purge</button>
+      todo
+      <span class="info">({{ remaining.length }} / {{ todos.length }})</span>
+    </h1>
+    <ul>
+      <li v-for="(todo, index) in todos">
+        <input type="checkbox" v-model="todo.isDone">
+        <span :class="{done: todo.isDone}">{{ todo.title }}</span>
+        <span @click="deleteItem(index)" class="command">[×]</span>
+      </li>
+      <li v-show="!todos.length">Nothing to do</li>
+    </ul>
+    <form @submit.prevent=addItem>
+      <input type="text" v-model="newItem">
+      <input type="submit" value="Add">
+    </form>
+  </div>
+
+  <div id="app3" v-cloak>
+    <p>Total Likes: {{ total }}</p>
+    <like-component message="Like" @increment="incrementTotal"></like-component>
+    <like-component message="Awesome" @increment="incrementTotal"></like-component>
+    <like-component message="Great" @increment="incrementTotal"></like-component>
+    <like-component @increment="incrementTotal"></like-component>
+  </div>
+
+  <div id="app5" v-cloak>
+    <input type="file">
+    <input v-model="message">
+    <p v-text="message" v-on:click="onRightClick($event, message)"></p>
+    <p v-html="sampleHtml"></p>
+    <pre>{{ $data }}</pre>
+
+    <h2 v-once>{{ message }}</h 2>
+    <button ref="azarashi" v-on:click="onAzarashiClick">あざらし！！！！！！</button>
+    <img v-bind:src="image" alt="">
+
+    <div v-if="type === 'A'">
+      typeはA
+    </div>
+    <div v-else-if="type === 'B'">
+      typeはB
+    </div>
+    <div v-else>
+      すべての条件を満たさなかった
+    </div>
+
+    <ul>
+      <!-- <li v-for="(monster,index,key) in monsters" v-bind:key="monster.name" v-if="monster.hp >= 300">
+        モンスター名：{{ monster.name }}
+      </li> -->
+      <li v-for="(monster,index,key) in monsters" v-bind:key="monster.name" v-if="monster.hp >= 300">
+        モンスター名：{{ monster.name }}
+      </li>
+    </ul>
+    <input type="text" v-model="newMonsterName">
+    <button v-on:click="onClick">モンスターを追加</button>
+    <button v-on:click="onDelete">モンスターを削除</button>
+
+    <ul>
+      <li v-for="item in items" v-on:click="onClick">{{ item.name }}</li>
+    </ul>
+    <button v-on:click="show=!show">切り替え:{{ show }}</button>
+    <transition name="fade">
+      <p v-if="show">
+        Hello Vue.js!
+      </p>
+    </transition>
+    <p text-content="aaaa">test</p>
+    <div class="wrap" v-bind:scroll-top.prop="scroll">
+      asaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+      aaaaaaaaaaaaaa<br>
+    </div>
+
+    <div v-bind:style="styleType">ア゛ーーー！！！</div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

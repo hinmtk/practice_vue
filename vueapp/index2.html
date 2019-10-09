@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <div id="app2" v-cloak>
+
+    <test-component></test-component>
+    <test2-component></test2-component>
+
+    <br>
+
+    <button v-on:click="items.push(items.length+1)">追加</button>
+    <ul ref="items">
+      <li v-for="item in items">{{ item }}</li>
+    </ul>
+
+    <!-- 動画1 -->
+    <button v-on:click="video1=true">再生</button>
+    <button v-on:click="video1=false">停止</button>
+    <video src="n139.mp3" v-video="video1"></video>
+
+    <!-- 動画2 -->
+    <button v-on:click="video2=true">再生</button>
+    <button v-on:click="video2=false">停止</button>
+    <video src="n140.mp3" v-video="video2"></video><br>
+    <br>
+    <input value="hogehoge" v-hogehoge>
+    <br>
+    <input v-focus><br>
+
+    <br>
+    ----------------------------<br>
+    <br>
+
+    <select v-model="current">
+      <option v-for="topic in topics" v-bind:value="topic.value">
+        {{ topic.name }}
+      </option>
+    </select>
+    <div v-for="item in list">{{ item.full_name }}</div>
+    <p>price: {{ price | localNum }}円</p>
+    <p>message: {{ message | filter('piyopiyo', 100) }}</p>
+    <p>180度はラジアン{{ 180 | radian | round }}</p>
+  </div>
+  <br>
+  ----------------------------<br>
+  <br>
+  <div id="app1" v-cloak>
+    <input v-model.number="budget"> 円以下に絞り込む<br>
+    <input v-model.number="limit"> 件を表示
+      <p>
+        {{ matched.length }} 件中 {{ limited.length }} 件を表示中
+      </p>
+      <p>matched: {{ matched }}</p>
+      <ul>
+        <!-- v-forでは最終結果、算出プロパティのlimitedを使用する -->
+        <li v-for="item in limited" v-bind:key="item.id">
+          {{ item.name }} {{ item.price }}円
+        </li>
+      </ul>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="js/main2.js"></script>
+</body>
+</html>
